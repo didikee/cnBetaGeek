@@ -3,16 +3,14 @@ package com.didikee.cnbetareader.test;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
+import com.didikee.cnbetareader.network.HttpMethods;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Subscriber;
 
 
 public class TestActivity extends AppCompatActivity {
@@ -31,27 +29,81 @@ public class TestActivity extends AppCompatActivity {
     }
 
     private void getDouBanMovie() {
-        String baseUrl = "https://api.douban.com/v2/movie/";
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        DouBanService douBanService = retrofit.create(DouBanService.class);
-        Call<DouBan> douBanCall = douBanService.getDouBanTop250(0, 10);
-        douBanCall.enqueue(new Callback<DouBan>() {
+//        String baseUrl = "https://api.douban.com/v2/movie/";
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(baseUrl)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//        RxDouBanService douBanService = retrofit.create(RxDouBanService.class);
+//        douBanService.getDouBanTop250(0, 10)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<DouBan>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(DouBan douBan) {
+//
+//                    }
+//                });
+//        douBanCall.enqueue(new Callback<DouBan>() {
+//            @Override
+//            public void onResponse(Call<DouBan> call, Response<DouBan> response) {
+//                if (response != null) {
+//                    tvShow.setText(response.body().getTitle());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<DouBan> call, Throwable t) {
+//
+//            }
+//        });
+
+//        HttpMethods.getInstance().getTopMovie(new Subscriber<DouBan>() {
+//            @Override
+//            public void onCompleted() {
+//                Toast.makeText(TestActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(DouBan douBan) {
+//                if (douBan!=null){
+//                    tvShow.setText(douBan.getTitle());
+//                }
+//            }
+//        },0,10);
+
+        HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<String>() {
             @Override
-            public void onResponse(Call<DouBan> call, Response<DouBan> response) {
-                if (response != null) {
-                    tvShow.setText(response.body().getTitle());
-                }
+            public void onCompleted() {
+                Toast.makeText(TestActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(Throwable e) {
 
             }
 
             @Override
-            public void onFailure(Call<DouBan> call, Throwable t) {
-
+            public void onNext(String newsDetail) {
+                tvShow.setText(newsDetail);
             }
-        });
-
+        },581785);
     }
 }

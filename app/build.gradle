@@ -37,4 +37,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
+    //okhttp log
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 }
