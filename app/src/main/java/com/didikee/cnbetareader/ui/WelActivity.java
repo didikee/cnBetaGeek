@@ -1,9 +1,10 @@
-package com.didikee.cnbetareader;
+package com.didikee.cnbetareader.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.test.TestActivity;
 
 public class WelActivity extends AppCompatActivity {

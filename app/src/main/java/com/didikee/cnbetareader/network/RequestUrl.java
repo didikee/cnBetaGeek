@@ -24,7 +24,7 @@ public class RequestUrl {
      * @param endSid 文章Sid
      * @return 文章列表url
      */
-    public static String getContentListUrl(final String endSid) {
+    public static String getArticleListUrl(final String endSid) {
         StringBuilder sb = new StringBuilder();
         sb.append("app_key=10000");
         sb.append("&end_sid=").append(endSid);
@@ -43,7 +43,7 @@ public class RequestUrl {
      * @param sid 文章的sid
      * @return 文章内容url
      */
-    public static String getContentUrl(final String sid) {
+    public static String getNewsDetailUrl(final String sid) {
         StringBuilder sb = new StringBuilder();
         sb.append("app_key=10000");
         sb.append("&format=json");
@@ -174,7 +174,7 @@ public class RequestUrl {
      * 获取文章列表
      * @return 文章列表url
      */
-    public static String getContentListUrl() {
+    public static String getArticleListUrl() {
         StringBuilder sb = new StringBuilder();
         sb.append("app_key=10000");
         sb.append("&format=json");

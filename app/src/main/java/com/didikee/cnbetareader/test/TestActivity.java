@@ -89,10 +89,28 @@ public class TestActivity extends AppCompatActivity {
 //            }
 //        },0,10);
 
-        HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<String>() {
+//        HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<NewsDetail>() {
+//            @Override
+//            public void onCompleted() {
+//                Toast.makeText(TestActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(NewsDetail newsDetail) {
+//                tvShow.setText(newsDetail.getResult().getTitle());
+//            }
+//        },581785);
+
+        String sid= Integer.MAX_VALUE +"";
+        HttpMethods.getInstance().getDefaultArticleList(new Subscriber<String>() {
             @Override
             public void onCompleted() {
-                Toast.makeText(TestActivity.this, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TestActivity.this, "哈哈", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -101,9 +119,9 @@ public class TestActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(String newsDetail) {
-                tvShow.setText(newsDetail);
+            public void onNext(String s) {
+
             }
-        },581785);
+        },sid);
     }
 }

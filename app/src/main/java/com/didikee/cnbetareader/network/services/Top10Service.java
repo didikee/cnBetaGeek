@@ -1,4 +1,4 @@
-package com.didikee.cnbetareader.network;
+package com.didikee.cnbetareader.network.services;
 
 import retrofit2.http.GET;
 import rx.Observable;

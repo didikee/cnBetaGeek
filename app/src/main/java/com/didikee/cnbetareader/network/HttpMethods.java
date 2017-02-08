@@ -2,6 +2,9 @@ package com.didikee.cnbetareader.network;
 
 import android.util.Log;
 
+import com.didikee.cnbetareader.bean.NewsDetail;
+import com.didikee.cnbetareader.network.services.DefaultArticleList;
+import com.didikee.cnbetareader.network.services.NewsDetailService;
 import com.didikee.cnbetareader.test.DouBan;
 import com.didikee.cnbetareader.test.RxDouBanService;
 
@@ -34,8 +37,8 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
-    public void getNewsDetailByNewsId(Subscriber<String> subscriber, long newsId) {
-        String url = RequestUrl.getContentUrl(newsId+"");
+    public void getNewsDetailByNewsId(Subscriber<NewsDetail> subscriber, long newsId) {
+        String url = RequestUrl.getNewsDetailUrl(newsId+"");
         Log.e("test","url: "+url);
         HttpService.getInstance().create(NewsDetailService
                 .class)
@@ -46,10 +49,14 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
+    public void getDefaultArticleList(Subscriber<String> subscriber, String lastSid){
+        String url = RequestUrl.getArticleListUrl(lastSid);
+        Log.e("test","url: "+url);
+        handleAll(subscriber,HttpService.getInstance().create(DefaultArticleList.class).getDefaultArticleList(url));
+    }
+
     private void handleAll(Subscriber subscriber, Observable observable) {
         if (subscriber == null || observable == null) return;
-
-
 
         observable.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
