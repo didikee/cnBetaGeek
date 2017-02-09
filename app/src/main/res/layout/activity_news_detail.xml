@@ -1,50 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <LinearLayout
-        android:padding="@dimen/md_small_margin"
-        android:orientation="vertical"
+    <include layout="@layout/layout_toolbar"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_title"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingExtra="6dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#000000"/>
+            android:orientation="vertical"
+            android:padding="@dimen/md_small_margin"
+            >
 
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="6dp"
-            android:textSize="12sp"
-            android:textColor="#bb888888"/>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/tv_shortDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/shape_newsdetail_short_desc_bg"
-            android:padding="6dp"
-            android:lineSpacingExtra="6dp"
-            android:textSize="15sp"
-            android:textColor="#555555"/>
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:textColor="#bb888888"
+                android:textSize="12sp"/>
 
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lineSpacingExtra="6dp"
-            android:textSize="16sp"
-            android:textColor="#555555"/>
+            <TextView
+                android:id="@+id/tv_shortDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_newsdetail_short_desc_bg"
+                android:lineSpacingExtra="6dp"
+                android:padding="6dp"
+                android:textColor="#555555"
+                android:textSize="15sp"/>
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6dp"
+                android:textColor="#555555"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/totop"
+          android:icon="@drawable/ic_textsms_grey600_24dp"
+          app:showAsAction="always"
+          android:title="回到顶部"/>
+
+    <item android:title="刷新"
+          app:showAsAction="never"
+          android:id="@+id/refresh"/>
+
+    <item android:title="设置"
+          android:id="@+id/setting"
+          app:showAsAction="never"/>
+
+    <item android:title="关于"
+          app:showAsAction="never"
+          android:id="@+id/about"/>
+</menu>

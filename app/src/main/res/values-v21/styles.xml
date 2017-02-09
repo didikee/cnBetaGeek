@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
                 <!-- Customize your theme here. -->
                 <item name="colorPrimary">@color/theme_1_deep</item>
                 <item name="colorPrimaryDark">@color/theme_1_deep</item>
                 <item name="colorAccent">@color/theme_1_accent</item>
                 <item name="android:textColorPrimary">@color/text_color_deep</item>
                 <item name="android:statusBarColor">@color/theme_1_dark</item>
+                <item name="android:actionMenuTextColor">@color/theme_1_accent</item>
+        </style>
+
+        <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+                <item name="actionMenuTextColor">@color/theme_1_accent</item> <!--  敲定颜色-->
+
         </style>
 </resources>

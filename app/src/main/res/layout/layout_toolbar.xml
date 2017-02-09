@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   android:id="@+id/toolbar"
+                                   android:background="@color/theme_1_deep"
+                                   android:minHeight="?attr/actionBarSize"
+                                   app:theme="@style/ToolbarTheme"
+    >
+    <!--自定义toolbar的title 和subtitle -->
+    <!--<TextView
+        android:id="@+id/toolbar_subtitle"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:textColor="@color/WHITE"
+        android:text="subtitle"
+        android:paddingRight="10dp"
+        android:layout_gravity="right" />
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:ellipsize="end"
+        android:text="title"
+        android:scrollHorizontally="true"
+        android:textColor="@color/WHITE"
+        android:layout_gravity="center" />-->
+</android.support.v7.widget.Toolbar>

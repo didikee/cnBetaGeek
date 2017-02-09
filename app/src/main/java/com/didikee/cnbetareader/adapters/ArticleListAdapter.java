@@ -73,6 +73,30 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     }
 
 
+    /**
+     *  获取最后一个 item 的 sid
+     * @return last sid
+     */
+    public String getLastSid(){
+        String sid;
+        if (mArticleList == null || mArticleList.size()<=0){
+            sid = Integer.MAX_VALUE +"";
+        }else {
+            int size = mArticleList.size();
+            sid = mArticleList.get(size - 1).getSid();
+        }
+        return sid;
+    }
+
+    public void update(List<ArticleListBean.ResultBean> result) {
+        if (result == null )return;
+        if (mArticleList == null){
+            mArticleList = result;
+        }else {
+            mArticleList.addAll(result);
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_time)
         TextView tvTime;

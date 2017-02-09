@@ -2,7 +2,7 @@ package com.didikee.cnbetareader.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends BaseCnBetaActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -31,6 +31,9 @@ public class NewsDetailActivity extends AppCompatActivity {
     TextView tvShortDesc;
     @BindView(R.id.tv_content)
     TextView tvContent;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
 
     private String curSid = "";
 
@@ -39,7 +42,19 @@ public class NewsDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         ButterKnife.bind(this);
+//        setToolBar(new Title("详情",true));
+        setToolBar();
         getCurSid(getIntent());
+    }
+
+    private void setToolBar() {
+
+//        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setTitle("详情");
+//        toolbar.setSubtitle("次级标题");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
