@@ -36,7 +36,7 @@ public class ArticleListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initRecyclerView();
-        requsetArticleList();
+        requestArticleList();
 
     }
 
@@ -68,11 +68,12 @@ public class ArticleListActivity extends AppCompatActivity {
         });
     }
 
-    private void requsetArticleList() {
+    private void requestArticleList() {
         String sid = Integer.MAX_VALUE + "";
         HttpMethods.getInstance().getDefaultArticleList(new Subscriber<ArticleListBean>() {
             @Override
             public void onCompleted() {
+
             }
 
             @Override
