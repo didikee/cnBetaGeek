@@ -12,6 +12,7 @@ import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.bean.Keys;
 import com.didikee.cnbetareader.bean.NewsDetail;
 import com.didikee.cnbetareader.network.HttpMethods;
+import com.didikee.cnbetareader.utils.HtmlUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,7 +100,7 @@ public class NewsDetailActivity extends AppCompatActivity {
                 bean.getGood(),
                 bean.getComments()));
 
-        tvShortDesc.setText(Html.fromHtml(bean.getHometext()));
+        tvShortDesc.setText(Html.fromHtml(HtmlUtil.htmlFilter(bean.getHometext())));
         tvContent.setText(Html.fromHtml(bean.getBodytext()));
     }
 }
