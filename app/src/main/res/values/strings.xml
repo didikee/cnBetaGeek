@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">cnBetaReader</string>
+    <string name="app_name">cnBeta Geek</string>
+    <string name="news_info">%1$s&#160;&#160;%2$s&#160;&#160;%3$s次阅读&#160;&#160;%4$s次推荐&#160;&#160;%5$s条评论</string>
 </resources>

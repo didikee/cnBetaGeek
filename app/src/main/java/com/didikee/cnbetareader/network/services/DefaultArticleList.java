@@ -1,5 +1,7 @@
 package com.didikee.cnbetareader.network.services;
 
+import com.didikee.cnbetareader.bean.ArticleListBean;
+
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -12,5 +14,5 @@ import rx.Observable;
 
 public interface DefaultArticleList {
     @GET
-    Observable<String> getDefaultArticleList(@Url String url);
+    Observable<ArticleListBean> getDefaultArticleList(@Url String url);
 }

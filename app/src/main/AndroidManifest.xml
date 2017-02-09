@@ -21,6 +21,10 @@
         </activity>
         <activity android:name=".ui.ArticleListActivity">
         </activity>
+        <activity android:name=".ui.NewsDetailActivity"
+            android:launchMode="singleTask"
+            >
+        </activity>
     </application>
 
 </manifest>

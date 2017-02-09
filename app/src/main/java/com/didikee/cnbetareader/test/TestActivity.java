@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
+import com.didikee.cnbetareader.bean.ArticleListBean;
 import com.didikee.cnbetareader.network.HttpMethods;
 
 import butterknife.BindView;
@@ -107,7 +108,7 @@ public class TestActivity extends AppCompatActivity {
 //        },581785);
 
         String sid= Integer.MAX_VALUE +"";
-        HttpMethods.getInstance().getDefaultArticleList(new Subscriber<String>() {
+        HttpMethods.getInstance().getDefaultArticleList(new Subscriber<ArticleListBean>() {
             @Override
             public void onCompleted() {
                 Toast.makeText(TestActivity.this, "哈哈", Toast.LENGTH_SHORT).show();
@@ -119,7 +120,7 @@ public class TestActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(String s) {
+            public void onNext(ArticleListBean s) {
 
             }
         },sid);
