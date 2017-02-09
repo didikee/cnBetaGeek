@@ -43,4 +43,7 @@ dependencies {
     // uilib
     compile 'com.didikee:UILibrary:0.8.9'
     compile 'com.android.support:recyclerview-v7:25.1.0'
+    // glide (gif)
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

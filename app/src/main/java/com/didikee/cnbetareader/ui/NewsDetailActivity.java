@@ -1,10 +1,12 @@
 package com.didikee.cnbetareader.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +14,9 @@ import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.bean.Keys;
 import com.didikee.cnbetareader.bean.NewsDetail;
 import com.didikee.cnbetareader.network.HttpMethods;
+import com.didikee.cnbetareader.ui.views.htmlTextView.PicassoImageGetter;
 import com.didikee.cnbetareader.utils.HtmlUtil;
+import com.didikee.uilibs.utils.DisplayUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,10 +49,10 @@ public class NewsDetailActivity extends AppCompatActivity {
         getCurSid(intent);
     }
 
-    private void getCurSid(Intent intent){
-        if (intent != null ){
+    private void getCurSid(Intent intent) {
+        if (intent != null) {
             String sid = intent.getStringExtra(Keys.SID);
-            if (!TextUtils.isEmpty(sid)){
+            if (!TextUtils.isEmpty(sid)) {
                 curSid = sid;
                 requestNewsDetail();
                 return;
@@ -58,7 +62,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         finish();
     }
 
-    private void requestNewsDetail(){
+    private void requestNewsDetail() {
         HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<NewsDetail>() {
             @Override
             public void onCompleted() {
@@ -77,30 +81,45 @@ public class NewsDetailActivity extends AppCompatActivity {
         }, curSid);
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private void bindData(NewsDetail newsDetail) {
-        if (newsDetail == null ){
+        if (newsDetail == null) {
             finish();
             return;
         }
         String status = newsDetail.getStatus();
-        if (!Keys.RESULT_OK.equalsIgnoreCase(status)){
+        if (!Keys.RESULT_OK.equalsIgnoreCase(status)) {
             finish();
             return;
         }
         NewsDetail.ResultBean bean = newsDetail.getResult();
         tvTitle.setText(bean.getTitle());
-//        contentDesc.setText(getString(R.string.content_desc,
-//                ContentUtil.getPrettyTime(ContentActivity.this, article.getTime()),
-//                Html.fromHtml(article.getSource()), article.getCounter(),
-//                article.getGood(), article.getComments()));
         tvInfo.setText(
                 getString(R.string.news_info, bean.getTime(),
-                Html.fromHtml(bean.getSource()),
-                bean.getCounter(),
-                bean.getGood(),
-                bean.getComments()));
-
+                        Html.fromHtml(bean.getSource()),
+                        bean.getCounter(),
+                        bean.getGood(),
+                        bean.getComments()));
         tvShortDesc.setText(Html.fromHtml(HtmlUtil.htmlFilter(bean.getHometext())));
-        tvContent.setText(Html.fromHtml(bean.getBodytext()));
+        boolean isSaveNetWork = true;
+        if (isSaveNetWork) {
+            int imageWidth = this.getResources().getDisplayMetrics().widthPixels - DisplayUtil.dp2px(this,
+                    10);
+//            URLImageParser p = new URLImageParser(this,imageWidth);
+//            Spanned htmlSpan = Html.fromHtml(bean.getBodytext(), p, null);
+//            Spanned htmlSpan = Html.fromHtml(bean.getBodytext(), new CnBetaImageGetter(this,imageWidth), null);
+//            tvContent.setText(htmlSpan);
+
+//            Spanned spanned = Html.fromHtml(bean.getBodytext(), new MyImageGetter(this, tvContent), new MyTagHandler(this));
+//            tvContent.setText(spanned);
+//            tvContent.setMovementMethod(LinkMovementMethod.getInstance());
+            tvContent.setMovementMethod(new LinkMovementMethod());
+            tvContent.setText(Html.fromHtml(bean.getBodytext(),
+                    new PicassoImageGetter(tvContent), null));
+        } else {
+            // 省流量模式
+            tvContent.setText(Html.fromHtml(bean.getBodytext()));
+        }
+
     }
 }
