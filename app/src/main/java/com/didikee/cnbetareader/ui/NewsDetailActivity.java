@@ -1,6 +1,5 @@
 package com.didikee.cnbetareader.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -81,7 +80,6 @@ public class NewsDetailActivity extends AppCompatActivity {
         }, curSid);
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
     private void bindData(NewsDetail newsDetail) {
         if (newsDetail == null) {
             finish();

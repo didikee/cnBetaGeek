@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.WelActivity">
+        <activity android:name=".ui.ArticleListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -19,8 +19,8 @@
         </activity>
         <activity android:name=".test.TestActivity">
         </activity>
-        <activity android:name=".ui.ArticleListActivity">
-        </activity>
+        <!--<activity android:name=".ui.ArticleListActivity">-->
+        <!--</activity>-->
         <activity android:name=".ui.NewsDetailActivity"
             android:launchMode="singleTask"
             >

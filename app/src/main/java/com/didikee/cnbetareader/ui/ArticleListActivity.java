@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.adapters.ArticleListAdapter;
@@ -74,7 +73,6 @@ public class ArticleListActivity extends AppCompatActivity {
         HttpMethods.getInstance().getDefaultArticleList(new Subscriber<ArticleListBean>() {
             @Override
             public void onCompleted() {
-                Toast.makeText(ArticleListActivity.this, "哈哈", Toast.LENGTH_SHORT).show();
             }
 
             @Override
