@@ -1,7 +1,7 @@
 package com.didikee.cnbetareader.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.bean.ArticleListBean;
-import com.didikee.cnbetareader.ui.views.OnItemClickListener;
+import com.didikee.cnbetareader.ui.views.interf.OnCommentsButtonClickListener;
+import com.didikee.cnbetareader.ui.views.interf.OnItemClickListener;
 
 import java.util.List;
 
@@ -25,10 +26,16 @@ import butterknife.ButterKnife;
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
 
     private OnItemClickListener<String> itemClickListener;
+    private OnCommentsButtonClickListener onCommentsButtonClickListener;
     private List<ArticleListBean.ResultBean> mArticleList;
 
     public void setItemClickListener(OnItemClickListener<String> itemClickListener) {
         this.itemClickListener = itemClickListener;
+    }
+
+    public void setOnCommentsButtonClickListener(OnCommentsButtonClickListener
+                                                         onCommentsButtonClickListener) {
+        this.onCommentsButtonClickListener = onCommentsButtonClickListener;
     }
 
     public void setData(List<ArticleListBean.ResultBean> articleList) {
@@ -44,7 +51,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         ArticleListBean.ResultBean bean = mArticleList.get(position);
-        holder.tvComments.setText(bean.getComments());
+        final String comments = bean.getComments();
+        holder.tvComments.setText(comments);
         holder.tvReads.setText(bean.getCounter());
         holder.tvTime.setText(bean.getPubtime());
         holder.tvTitle.setText(bean.getTitle());
@@ -62,9 +70,23 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         holder.tvComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("test","88888");
+                if (onCommentsButtonClickListener!=null){
+                    onCommentsButtonClickListener.onCommentsBtnClick(sid,getInt(comments));
+                }
             }
         });
+    }
+
+    private int getInt(String num){
+        int result = 0;
+        if (!TextUtils.isEmpty(num)){
+            try {
+                result = Integer.valueOf(num);
+            } catch (NumberFormatException e) {
+                // empty
+            }
+        }
+        return  result;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.didikee.cnbetareader.ui.views;
+package com.didikee.cnbetareader.ui.views.interf;
 
 import android.view.View;
 

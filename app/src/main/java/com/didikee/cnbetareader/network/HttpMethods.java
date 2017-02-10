@@ -4,7 +4,8 @@ import android.util.Log;
 
 import com.didikee.cnbetareader.bean.ArticleListBean;
 import com.didikee.cnbetareader.bean.NewsDetail;
-import com.didikee.cnbetareader.network.services.DefaultArticleList;
+import com.didikee.cnbetareader.network.services.DefaultArticleListService;
+import com.didikee.cnbetareader.network.services.NewsCommentsService;
 import com.didikee.cnbetareader.network.services.NewsDetailService;
 import com.didikee.cnbetareader.test.DouBan;
 import com.didikee.cnbetareader.test.RxDouBanService;
@@ -49,12 +50,29 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
+    /**
+     * 获取默认的文章列表
+     * @param subscriber
+     * @param lastSid 最后一个文章的sid,没有时填写 Integer.MAX_VALUE
+     */
     public void getDefaultArticleList(Subscriber<ArticleListBean> subscriber, String lastSid){
         String url = RequestUrl.getArticleListUrl(lastSid);
         Log.e("test","url: "+url);
         HttpService.getInstance()
-                .create(DefaultArticleList.class)
+                .create(DefaultArticleListService.class)
                 .getDefaultArticleList(url)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void getNewsComments(Subscriber<String> subscriber, String sid,int page){
+        String url = RequestUrl.getCommentsUrl(sid,page);
+        Log.e("test","url: "+url);
+        HttpService.getInstance()
+                .create(NewsCommentsService.class)
+                .getNewsComments(url)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

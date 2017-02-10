@@ -12,7 +12,7 @@ import rx.Observable;
  * Description: 获取默认的文章列表
  */
 
-public interface DefaultArticleList {
+public interface DefaultArticleListService {
     @GET
     Observable<ArticleListBean> getDefaultArticleList(@Url String url);
 }

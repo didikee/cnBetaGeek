@@ -18,7 +18,8 @@ import com.didikee.cnbetareader.adapters.ArticleListAdapter;
 import com.didikee.cnbetareader.bean.ArticleListBean;
 import com.didikee.cnbetareader.bean.Keys;
 import com.didikee.cnbetareader.network.HttpMethods;
-import com.didikee.cnbetareader.ui.views.OnItemClickListener;
+import com.didikee.cnbetareader.ui.views.interf.OnCommentsButtonClickListener;
+import com.didikee.cnbetareader.ui.views.interf.OnItemClickListener;
 import com.didikee.uilibs.utils.DisplayUtil;
 
 import java.util.List;
@@ -28,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Subscriber;
 
-public class ArticleListActivity extends BaseCnBetaActivity {
+public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickListener<String>,OnCommentsButtonClickListener {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -76,7 +77,7 @@ public class ArticleListActivity extends BaseCnBetaActivity {
 
     private void initRecyclerView() {
         mALAdapter = new ArticleListAdapter();
-        linearLayoutManager = new LinearLayoutManager(ArticleListActivity
+        linearLayoutManager = new LinearLayoutManager(ArticlesActivity
                 .this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         final int dp2 = DisplayUtil.dp2px(this, 4);
@@ -90,17 +91,8 @@ public class ArticleListActivity extends BaseCnBetaActivity {
 
         });
         recyclerView.setAdapter(mALAdapter);
-        mALAdapter.setItemClickListener(new OnItemClickListener<String>() {
-            @Override
-            public void onItemClick(View view, String sid) {
-                if (TextUtils.isEmpty(sid)){
-                    return;
-                }
-                Intent intent = new Intent(ArticleListActivity.this,NewsDetailActivity.class);
-                intent.putExtra(Keys.SID,sid);
-                startActivity(intent);
-            }
-        });
+        mALAdapter.setItemClickListener(this);
+        mALAdapter.setOnCommentsButtonClickListener(this);
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -177,5 +169,42 @@ public class ArticleListActivity extends BaseCnBetaActivity {
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onItemClick(View view, String sid) {
+        if (TextUtils.isEmpty(sid)){
+            return;
+        }
+        Intent intent = new Intent(ArticlesActivity.this,NewsDetailActivity.class);
+        intent.putExtra(Keys.SID,sid);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onCommentsBtnClick(String sid,int comments) {
+        if (TextUtils.isEmpty(sid) || comments <=0){
+            Toast.makeText(this, "暂时还没有评论~", Toast.LENGTH_SHORT).show();
+            return;
+        }
+//        Intent intent = new Intent(ArticlesActivity.this,NewsDetailActivity.class);
+//        intent.putExtra(Keys.SID,sid);
+//        startActivity(intent);
+        HttpMethods.getInstance().getNewsComments(new Subscriber<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+
+            }
+        },sid,1);
     }
 }
