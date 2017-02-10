@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="64dp"
+                                    android:layout_marginLeft="@dimen/md_small_margin"
+                                    android:layout_marginRight="@dimen/md_small_margin"
+                                    android:elevation="4dp"
+
+    >
+
+    <LinearLayout
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/md_small_margin"
+        android:background="@drawable/md_ripple_white"
+        android:clickable="true"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="匿名用户"
+                android:textColor="@color/text_color_deep"
+                android:textSize="12sp"
+                android:lines="1"
+                android:ellipsize="end"
+                />
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-2-07"
+                android:textSize="12sp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:layout_marginLeft="@dimen/md_small_margin"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="@dimen/md_small_margin"
+            android:layout_marginBottom="@dimen/md_small_margin"
+            android:textColor="@color/text_color_deep"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/tv_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:minWidth="@dimen/dp36"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/ic_thumb_up_grey600_18dp"
+                android:text="0"
+                android:drawablePadding="@dimen/dp4"
+                android:gravity="center"
+                />
+            <TextView
+                android:id="@+id/tv_no"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:minWidth="@dimen/dp36"
+                android:layout_gravity="center_vertical"
+                android:drawableLeft="@drawable/ic_thumb_down_grey600_18dp"
+                android:text="0"
+                android:drawablePadding="@dimen/dp4"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/md_normal_margin"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
