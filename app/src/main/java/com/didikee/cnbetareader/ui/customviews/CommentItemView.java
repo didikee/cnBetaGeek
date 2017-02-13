@@ -47,6 +47,9 @@ public class CommentItemView extends LinearLayout{
     public void setTitle(CharSequence title){
         tvTitle.setText(title);
     }
+    public void setTitleGone(){
+        tvTitle.setVisibility(GONE);
+    }
     public void setContent(CharSequence content){
         tvContent.setText(content);
     }

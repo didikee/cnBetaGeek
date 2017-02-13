@@ -3,7 +3,8 @@ package com.didikee.cnbetareader.network;
 import android.util.Log;
 
 import com.didikee.cnbetareader.bean.ArticleListBean;
-import com.didikee.cnbetareader.bean.NewsDetail;
+import com.didikee.cnbetareader.bean.CommentBeanList;
+import com.didikee.cnbetareader.bean.NewsDetailBean;
 import com.didikee.cnbetareader.network.services.DefaultArticleListService;
 import com.didikee.cnbetareader.network.services.NewsCommentsService;
 import com.didikee.cnbetareader.network.services.NewsDetailService;
@@ -38,7 +39,7 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
-    public void getNewsDetailByNewsId(Subscriber<NewsDetail> subscriber, String newsId) {
+    public void getNewsDetailByNewsId(Subscriber<NewsDetailBean> subscriber, String newsId) {
         String url = RequestUrl.getNewsDetailUrl(newsId);
         Log.e("test","url: "+url);
         HttpService.getInstance().create(NewsDetailService
@@ -67,7 +68,7 @@ public class HttpMethods {
                 .subscribe(subscriber);
     }
 
-    public void getNewsComments(Subscriber<String> subscriber, String sid,int page){
+    public void getNewsComments(Subscriber<CommentBeanList> subscriber, String sid, int page){
         String url = RequestUrl.getCommentsUrl(sid,page);
         Log.e("test","url: "+url);
         HttpService.getInstance()

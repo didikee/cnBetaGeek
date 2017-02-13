@@ -6,7 +6,7 @@ package com.didikee.cnbetareader.bean;
  * Description: 
  */
 
-public class NewsDetail {
+public class NewsDetailBean {
 
     /**
      * status : success

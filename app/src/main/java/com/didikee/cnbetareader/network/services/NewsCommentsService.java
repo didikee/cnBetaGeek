@@ -1,5 +1,7 @@
 package com.didikee.cnbetareader.network.services;
 
+import com.didikee.cnbetareader.bean.CommentBeanList;
+
 import retrofit2.http.GET;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -12,5 +14,5 @@ import rx.Observable;
 
 public interface NewsCommentsService {
     @GET
-    Observable<String> getNewsComments(@Url String commentsUrl);
+    Observable<CommentBeanList> getNewsComments(@Url String commentsUrl);
 }

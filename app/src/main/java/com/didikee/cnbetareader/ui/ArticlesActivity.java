@@ -71,6 +71,9 @@ public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickL
                 requestArticleList(Integer.MAX_VALUE + "");
             }
         });
+        autoRefresh();
+    }
+    public void autoRefresh(){
         swipeRefreshLayout.setRefreshing(true);
         requestArticleList(Integer.MAX_VALUE + "");
     }
@@ -156,10 +159,10 @@ public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickL
                 Toast.makeText(this,"感谢使用,欢迎反馈"+"\n\n" + "          by didikee",Toast.LENGTH_LONG).show();
                 break;
             case R.id.totop:
-                Toast.makeText(this,"顶部",Toast.LENGTH_SHORT).show();
+                recyclerView.smoothScrollToPosition(0);
                 break;
             case R.id.refresh:
-                Toast.makeText(this,"刷新",Toast.LENGTH_SHORT).show();
+                autoRefresh();
                 break;
             case android.R.id.home:
                 onBackPressed();
@@ -187,24 +190,8 @@ public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickL
             Toast.makeText(this, "暂时还没有评论~", Toast.LENGTH_SHORT).show();
             return;
         }
-//        Intent intent = new Intent(ArticlesActivity.this,NewsDetailActivity.class);
-//        intent.putExtra(Keys.SID,sid);
-//        startActivity(intent);
-        HttpMethods.getInstance().getNewsComments(new Subscriber<String>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(String s) {
-
-            }
-        },sid,1);
+        Intent intent = new Intent(ArticlesActivity.this,CommentsActivity.class);
+        intent.putExtra(Keys.SID,sid);
+        startActivity(intent);
     }
 }

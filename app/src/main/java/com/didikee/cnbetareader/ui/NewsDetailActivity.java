@@ -6,12 +6,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.bean.Keys;
-import com.didikee.cnbetareader.bean.NewsDetail;
+import com.didikee.cnbetareader.bean.NewsDetailBean;
 import com.didikee.cnbetareader.network.HttpMethods;
 import com.didikee.cnbetareader.ui.views.htmlTextView.PicassoImageGetter;
 import com.didikee.cnbetareader.utils.HtmlUtil;
@@ -36,22 +38,19 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
 
 
     private String curSid = "";
+    private int comments = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);
         ButterKnife.bind(this);
-//        setToolBar(new Title("详情",true));
         setToolBar();
         getCurSid(getIntent());
     }
 
     private void setToolBar() {
-
-//        toolbar.setLogo(R.mipmap.ic_launcher);
         toolbar.setTitle("详情");
-//        toolbar.setSubtitle("次级标题");
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -77,7 +76,7 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
     }
 
     private void requestNewsDetail() {
-        HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<NewsDetail>() {
+        HttpMethods.getInstance().getNewsDetailByNewsId(new Subscriber<NewsDetailBean>() {
             @Override
             public void onCompleted() {
 
@@ -89,23 +88,28 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
             }
 
             @Override
-            public void onNext(NewsDetail newsDetail) {
-                bindData(newsDetail);
+            public void onNext(NewsDetailBean newsDetailBean) {
+                bindData(newsDetailBean);
             }
         }, curSid);
     }
 
-    private void bindData(NewsDetail newsDetail) {
-        if (newsDetail == null) {
+    private void bindData(NewsDetailBean newsDetailBean) {
+        if (newsDetailBean == null) {
             finish();
             return;
         }
-        String status = newsDetail.getStatus();
+        String status = newsDetailBean.getStatus();
         if (!Keys.RESULT_OK.equalsIgnoreCase(status)) {
             finish();
             return;
         }
-        NewsDetail.ResultBean bean = newsDetail.getResult();
+        NewsDetailBean.ResultBean bean = newsDetailBean.getResult();
+        try {
+            comments = Integer.valueOf(bean.getComments());
+        } catch (NumberFormatException e) {
+            // empty
+        }
         tvTitle.setText(bean.getTitle());
         tvInfo.setText(
                 getString(R.string.news_info, bean.getTime(),
@@ -118,14 +122,6 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
         if (isSaveNetWork) {
             int imageWidth = this.getResources().getDisplayMetrics().widthPixels - DisplayUtil.dp2px(this,
                     10);
-//            URLImageParser p = new URLImageParser(this,imageWidth);
-//            Spanned htmlSpan = Html.fromHtml(bean.getBodytext(), p, null);
-//            Spanned htmlSpan = Html.fromHtml(bean.getBodytext(), new CnBetaImageGetter(this,imageWidth), null);
-//            tvContent.setText(htmlSpan);
-
-//            Spanned spanned = Html.fromHtml(bean.getBodytext(), new MyImageGetter(this, tvContent), new MyTagHandler(this));
-//            tvContent.setText(spanned);
-//            tvContent.setMovementMethod(LinkMovementMethod.getInstance());
             tvContent.setMovementMethod(new LinkMovementMethod());
             tvContent.setText(Html.fromHtml(bean.getBodytext(),
                     new PicassoImageGetter(tvContent), null));
@@ -134,5 +130,34 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
             tvContent.setText(Html.fromHtml(bean.getBodytext()));
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.news_detail_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.comment:
+                startCommentActivity();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void startCommentActivity(){
+        if (TextUtils.isEmpty(curSid) || comments <=0){
+            Toast.makeText(this, "暂时还没有评论~", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Intent intent = new Intent(NewsDetailActivity.this,CommentsActivity.class);
+        intent.putExtra(Keys.SID,curSid);
+        startActivity(intent);
     }
 }

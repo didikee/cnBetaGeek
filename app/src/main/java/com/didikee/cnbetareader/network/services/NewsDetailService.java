@@ -1,6 +1,6 @@
 package com.didikee.cnbetareader.network.services;
 
-import com.didikee.cnbetareader.bean.NewsDetail;
+import com.didikee.cnbetareader.bean.NewsDetailBean;
 
 import retrofit2.http.GET;
 import retrofit2.http.Url;
@@ -14,5 +14,5 @@ import rx.Observable;
 
 public interface NewsDetailService {
     @GET
-    Observable<NewsDetail> getNewsDetailByUrl(@Url String url);
+    Observable<NewsDetailBean> getNewsDetailByUrl(@Url String url);
 }

@@ -3,7 +3,6 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-    android:padding="@dimen/md_small_margin"
     >
     <TextView
         android:id="@+id/tv_title"
@@ -18,9 +17,9 @@
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/md_small_margin"
-        android:layout_marginTop="@dimen/md_small_margin"
-        android:textSize="14sp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp"
+        android:textSize="15sp"
         />
 
 </LinearLayout>

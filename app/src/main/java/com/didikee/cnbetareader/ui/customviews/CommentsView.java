@@ -44,6 +44,12 @@ public class CommentsView extends FrameLayout{
 
         initParams();
     }
+    public CommentsView(List<CommentBean> floorComments,Context context){
+        super(context);
+        if (floorComments != null && floorComments.size()>0){
+            setFloors(floorComments);
+        }
+    }
 
     private void initParams() {
         mFloorPadding = DisplayUtil.dp2px(getContext(),3);
@@ -60,12 +66,14 @@ public class CommentsView extends FrameLayout{
         int size = floorComments.size();
         int lastHeight = 0;
         ArrayList<Pair<View,FrameLayout.LayoutParams>> allView = new ArrayList<>();
-        int almost = DisplayUtil.dp2px(getContext(), 32);
+        int almost = DisplayUtil.dp2px(getContext(), 4);
         for (int i = 0; i < size; i++) {
             LayoutParams floorLayoutParams = getFloorLayoutParams(size, i);
             CommentBean commentBean = floorComments.get(i);
             CommentItemView itemView =new CommentItemView(getContext());
-            itemView.setTitle(commentBean.getName());
+            if (i== size - 1){
+                itemView.setTitleGone();
+            }
             itemView.setContent(commentBean.getContent());
             int paddingTop = lastHeight + mFloorPadding * i;
             Log.e("test","top: "+paddingTop);
@@ -80,7 +88,7 @@ public class CommentsView extends FrameLayout{
             itemView.setBackgroundResource(mFloorBackgroundDrawableRes);
             allView.add(new Pair<View, LayoutParams>(itemView,floorLayoutParams));
             int alx1 = getHeight(getContext(),commentBean.getName(),12,getCurrentWidth(size,i),Typeface.DEFAULT,0);
-            int alx2 = getHeight(getContext(),commentBean.getContent(),14,getCurrentWidth(size,i),Typeface.DEFAULT,0);
+            int alx2 = getHeight(getContext(),commentBean.getContent(),15,getCurrentWidth(size,i),Typeface.DEFAULT,0);
             Log.e("test","i: "+i +" alx1: "+alx1 +"  alx2: "+alx2+" almost: "+almost) ;
             lastHeight =lastHeight + alx1 +alx2+ almost;
             Log.e("test","lastHeight: "+lastHeight) ;
