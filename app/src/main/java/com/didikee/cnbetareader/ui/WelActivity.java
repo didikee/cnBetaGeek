@@ -14,5 +14,6 @@ public class WelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 //        startActivity(new Intent(this,TestActivity.class));
         startActivity(new Intent(this,ArticlesActivity.class));
+        finish();
     }
 }

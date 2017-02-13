@@ -38,6 +38,8 @@ public class CommentsActivity extends BaseCnBetaActivity {
     private LinearLayoutManager linearLayoutManager;
     private CommentsAdapter commentsAdapter;
     private String curSid = "";
+    private final int SIZE = 10;
+    private int mPage = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +69,12 @@ public class CommentsActivity extends BaseCnBetaActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requestComments(1);
+                mPage = 1;
+                requestComments(mPage);
             }
         });
         swipeRefreshLayout.setRefreshing(true);
-        requestComments(1);
+        requestComments(mPage);
     }
 
     private void initRecyclerView() {
@@ -92,7 +95,7 @@ public class CommentsActivity extends BaseCnBetaActivity {
         recyclerView.setAdapter(commentsAdapter);
     }
 
-    private void requestComments(int page) {
+    private void requestComments(final int page) {
         HttpMethods.getInstance().getNewsComments(new Subscriber<CommentBeanList>() {
             @Override
             public void onCompleted() {
@@ -106,13 +109,31 @@ public class CommentsActivity extends BaseCnBetaActivity {
 
             @Override
             public void onNext(CommentBeanList s) {
-                List<ArrayList<CommentBean>> comments = doCommentsData(s);
-                if (comments == null || comments.size() <= 0) {
+//                List<ArrayList<CommentBean>> comments = doCommentsData(s);
+//                if (comments == null || comments.size() <= 0) {
+//                    Toast.makeText(CommentsActivity.this, "数据异常", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+                if (s == null){
                     Toast.makeText(CommentsActivity.this, "数据异常", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                commentsAdapter.setData(comments);
+                List<CommentBean> result = s.getResult();
+                if (result == null || result.size()<=0){
+                    Toast.makeText(CommentsActivity.this, "数据异常", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (mPage == 1){
+                    commentsAdapter.setData(result);
+                }else {
+                    commentsAdapter.updateData(result);
+                }
                 commentsAdapter.notifyDataSetChanged();
+                int size = result.size();
+                if (size==SIZE){
+                    mPage++;
+                    requestComments(mPage);
+                }
             }
         }, curSid, page);
     }

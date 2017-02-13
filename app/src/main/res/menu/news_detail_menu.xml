@@ -4,6 +4,6 @@
 
     <item android:title="评论"
           android:id="@+id/comment"
-          android:icon="@drawable/ic_textsms_grey600_24dp"
+          android:icon="@drawable/ic_forum_black_24dp"
           app:showAsAction="always"/>
 </menu>

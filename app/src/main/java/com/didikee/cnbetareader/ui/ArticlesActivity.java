@@ -168,7 +168,7 @@ public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickL
                 onBackPressed();
                 break;
             case R.id.setting:
-                Toast.makeText(this,"设置",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"即将开放无图模式!",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
