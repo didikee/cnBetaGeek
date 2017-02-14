@@ -4,7 +4,8 @@
 
 # 下载
 
-`审核中...`
+##国内: **[从酷市场下载](http://www.coolapk.com/apk/com.didikee.cnbetareader)**
+##国际:`审核中...`
 
 # 功能列表
 - 默认浏览列表
