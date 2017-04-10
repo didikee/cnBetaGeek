@@ -1,61 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
-    <include layout="@layout/layout_toolbar"/>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-        <LinearLayout
+        <include layout="@layout/layout_toolbar"/>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/md_small_margin"
-            >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_title"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lineSpacingExtra="6dp"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:orientation="vertical"
+                android:padding="@dimen/md_small_margin"
+                >
 
-            <TextView
-                android:id="@+id/tv_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="6dp"
-                android:textColor="#bb888888"
-                android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/tv_shortDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/shape_newsdetail_short_desc_bg"
-                android:lineSpacingExtra="6dp"
-                android:padding="6dp"
-                android:textColor="#555555"
-                android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
+                    android:textColor="#bb888888"
+                    android:textSize="12sp"/>
 
-            <TextView
-                android:id="@+id/tv_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="6dp"
-                android:textColor="#555555"
-                android:textSize="16sp"/>
+                <TextView
+                    android:id="@+id/tv_shortDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_newsdetail_short_desc_bg"
+                    android:lineSpacingExtra="6dp"
+                    android:padding="6dp"
+                    android:textColor="#555555"
+                    android:textSize="15sp"/>
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
+                    android:textColor="#555555"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:clickable="true"
+        android:layout_gravity="right|bottom"
+        android:layout_margin="@dimen/md_normal_margin"
+        android:src="@drawable/ic_forum_white_24dp"
+        app:backgroundTint="@color/theme_1_deep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
+
+    <ImageView
+        android:id="@+id/iv_btn"
+        android:clickable="true"
+        android:layout_width="@dimen/md_item_large_height"
+        android:layout_height="@dimen/md_item_large_height"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/md_normal_margin"
+        android:src="@drawable/ic_forum_white_24dp"
+        android:background="@drawable/shape_oval_alpha_theme1_deep_color"
+        android:scaleType="centerInside"
+        />
+
+</FrameLayout>
 

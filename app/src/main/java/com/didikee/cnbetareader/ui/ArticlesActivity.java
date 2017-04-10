@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.adapters.ArticleListAdapter;
+import com.didikee.cnbetareader.app.BaseCnBetaActivity;
 import com.didikee.cnbetareader.bean.ArticleListBean;
 import com.didikee.cnbetareader.bean.Keys;
 import com.didikee.cnbetareader.network.HttpMethods;
@@ -181,6 +182,7 @@ public class ArticlesActivity extends BaseCnBetaActivity implements OnItemClickL
         }
         Intent intent = new Intent(ArticlesActivity.this,NewsDetailActivity.class);
         intent.putExtra(Keys.SID,sid);
+        intent.putExtra(Keys.COMMENT,sid);
         startActivity(intent);
     }
 

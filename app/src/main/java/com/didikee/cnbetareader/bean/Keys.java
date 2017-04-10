@@ -8,5 +8,6 @@ package com.didikee.cnbetareader.bean;
 
 public class Keys {
     public static final String SID = "sid";
+    public static final String COMMENT = "comment";//评论
     public static final String RESULT_OK = "success";
 }

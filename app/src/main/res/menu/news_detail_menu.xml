@@ -2,8 +2,8 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="评论"
+    <!--<item android:title="评论"
           android:id="@+id/comment"
           android:icon="@drawable/ic_forum_black_24dp"
-          app:showAsAction="always"/>
+          app:showAsAction="always"/>-->
 </menu>

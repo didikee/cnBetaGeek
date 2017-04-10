@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
 import com.didikee.cnbetareader.adapters.CommentsAdapter;
+import com.didikee.cnbetareader.app.BaseCnBetaActivity;
 import com.didikee.cnbetareader.bean.CommentBean;
 import com.didikee.cnbetareader.bean.CommentBeanList;
 import com.didikee.cnbetareader.bean.Keys;

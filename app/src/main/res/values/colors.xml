@@ -10,4 +10,7 @@
     <color name="theme_1_deep">#3E6B89</color>
     <color name="theme_1_dark">#122D42</color>
     <color name="theme_1_accent">#F47C7C</color>
+
+    <color name="theme_1_deep_99">#AA3E6B89</color>
+
 </resources>

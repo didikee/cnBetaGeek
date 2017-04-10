@@ -1,10 +1,11 @@
-package com.didikee.cnbetareader.ui;
+package com.didikee.cnbetareader.app;
 
 import android.support.annotation.DrawableRes;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+
+import com.aitangba.swipeback.SwipeBackActivity;
 
 
 /**
@@ -12,7 +13,7 @@ import android.view.MenuItem;
  * 统一处理标题等等
  */
 
-public abstract class BaseCnBetaActivity extends AppCompatActivity {
+public abstract class BaseCnBetaActivity extends SwipeBackActivity {
     protected void setToolBar(Toolbar toolbar, CharSequence title, boolean backIcon, CharSequence
             subTitle, @DrawableRes int logo) {
         if (logo !=0){

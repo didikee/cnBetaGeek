@@ -8,10 +8,12 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.didikee.cnbetareader.R;
+import com.didikee.cnbetareader.app.BaseCnBetaActivity;
 import com.didikee.cnbetareader.bean.Keys;
 import com.didikee.cnbetareader.bean.NewsDetailBean;
 import com.didikee.cnbetareader.network.HttpMethods;
@@ -21,6 +23,7 @@ import com.didikee.uilibs.utils.DisplayUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.Subscriber;
 
 public class NewsDetailActivity extends BaseCnBetaActivity {
@@ -35,6 +38,11 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
     TextView tvContent;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+//    @BindView(R.id.fab)
+//    FloatingActionButton fab;
+    @BindView(R.id.iv_btn)
+    ImageView ivBtn;
+
 
 
     private String curSid = "";
@@ -144,11 +152,15 @@ public class NewsDetailActivity extends BaseCnBetaActivity {
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.comment:
-                startCommentActivity();
-                break;
+//            case R.id.comment:
+//                startCommentActivity();
+//                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    @OnClick(R.id.iv_btn)
+    public void onClick(){
+        startCommentActivity();
     }
 
     private void startCommentActivity(){
